@@ -1,0 +1,36 @@
+---
+const steps = [
+  {
+    title: "Discover",
+    description: "We discuss ideas, sizes, and where the piece will live."
+  },
+  {
+    title: "Design",
+    description: "We map layout, lighting, and materials, then confirm the plan."
+  },
+  {
+    title: "Craft",
+    description: "Each element is sanded, joined, and finished by hand."
+  },
+  {
+    title: "Deliver",
+    description: "We coordinate delivery or collection across South Wales."
+  }
+];
+---
+<section class="section" id="process">
+  <div class="container">
+    <h2 class="section-title">How it works</h2>
+    <p class="section-lead">
+      A simple, collaborative process so your driftwood piece feels personal from day one.
+    </p>
+    <div class="process-list">
+      {steps.map((step) => (
+        <div class="process-item">
+          <h4>{step.title}</h4>
+          <p>{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

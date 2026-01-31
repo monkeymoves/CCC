@@ -1,0 +1,52 @@
+---
+---
+<div class="lightbox" data-lightbox aria-hidden="true">
+  <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Fullscreen image">
+    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close">
+      X
+    </button>
+    <img src="" alt="" data-lightbox-image />
+  </div>
+</div>
+
+<script>
+  const overlay = document.querySelector('[data-lightbox]');
+  const image = document.querySelector('[data-lightbox-image]');
+  const closeButton = document.querySelector('[data-lightbox-close]');
+
+  const openLightbox = (src, alt) => {
+    if (!overlay || !image) return;
+    image.src = src;
+    image.alt = alt || '';
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+  };
+
+  const closeLightbox = () => {
+    if (!overlay || !image) return;
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    image.src = '';
+    image.alt = '';
+    document.body.classList.remove('menu-open');
+  };
+
+  document.querySelectorAll('[data-lightbox-trigger]').forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      const src = trigger.getAttribute('data-lightbox-src') || trigger.getAttribute('href');
+      const alt = trigger.getAttribute('data-lightbox-alt') || '';
+      if (src) openLightbox(src, alt);
+    });
+  });
+
+  closeButton?.addEventListener('click', closeLightbox);
+  overlay?.addEventListener('click', (event) => {
+    if (event.target === overlay) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeLightbox();
+  });
+</script>

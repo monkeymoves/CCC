@@ -1,0 +1,27 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Celtic Coast Creations | Driftwood Design",
+  description = "Custom driftwood lamps, mirrors, and sculptural pieces handcrafted in South Wales.",
+  ogImage = "/images/hero-banner.jpg"
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f7f6f3" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,44 @@
+---
+---
+<section class="section" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <h2 class="section-title">Let's make something unique</h2>
+      <p class="section-lead">
+        Tell us about your space, the size you need, and any inspiration. We'll reply with
+        ideas, timelines, and a quote for your custom driftwood piece.
+      </p>
+      <div class="contact-card">
+        <p><strong>Based in:</strong> South Wales, UK</p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:hello@celticcoastcreations.co.uk">hello@celticcoastcreations.co.uk</a>
+        </p>
+        <p><strong>Typical turnaround:</strong> 2-4 weeks depending on the build.</p>
+      </div>
+    </div>
+    <div class="contact-card">
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks">
+        <input type="hidden" name="form-name" value="contact" />
+        <p style="display:none;">
+          <label>
+            Don't fill this out if you're human: <input name="bot-field" />
+          </label>
+        </p>
+        <label>
+          Your name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email address
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Tell us about your project
+          <textarea name="message" required></textarea>
+        </label>
+        <button class="btn" type="submit">Send enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Contact | Celtic Coast Creations">
+  <Header />
+  <main id="main">
+    <section class="section page-intro">
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h1 class="section-title">Let us craft something coastal</h1>
+        <p class="section-lead">
+          Share your idea, dimensions, and any inspiration. We will respond with a plan and timeline.
+        </p>
+      </div>
+    </section>
+    <Contact />
+  </main>
+  <Footer />
+</BaseLayout>

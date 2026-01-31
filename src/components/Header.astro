@@ -1,0 +1,65 @@
+---
+---
+<header class="site-header" data-header>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="container">
+    <a class="logo" href="/">
+      <img src="/logoCCC.png" alt="Celtic Coast Creations logo" loading="eager" />
+      <span>Celtic Coast Creations</span>
+    </a>
+    <div class="header-actions">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-menu"
+        aria-label="Toggle menu"
+        data-menu-toggle
+      >
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+    <nav id="site-menu" class="site-nav" data-menu aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/portfolio">Portfolio</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+  <div class="menu-backdrop" data-menu-backdrop></div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const toggle = header?.querySelector('[data-menu-toggle]');
+  const menu = header?.querySelector('[data-menu]');
+  const backdrop = header?.querySelector('[data-menu-backdrop]');
+
+  const closeMenu = () => {
+    if (!header || !toggle) return;
+    header.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
+
+  const openMenu = () => {
+    if (!header || !toggle) return;
+    header.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+  };
+
+  toggle?.addEventListener('click', () => {
+    if (!header?.classList.contains('is-open')) {
+      openMenu();
+      return;
+    }
+    closeMenu();
+  });
+
+  backdrop?.addEventListener('click', closeMenu);
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+</script>
