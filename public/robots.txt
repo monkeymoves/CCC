@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://celticcoastcreations.co.uk/sitemap.xml
