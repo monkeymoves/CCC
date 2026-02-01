@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const pieces = await getCollection("portfolio");
+  return pieces.map((piece) => ({
+    params: { slug: piece.slug },
+    props: { piece }
+  }));
+}
+
+const { piece } = Astro.props;
+const { Content } = await piece.render();
+const images = [piece.data.cover, ...piece.data.images].filter(Boolean);
+const uniqueImages = Array.from(new Set(images));
+---
+
+<BaseLayout title={`${piece.data.title} | Celtic Coast Creations`}>
+  <Header />
+  <main id="main">
+    <section class="section page-intro piece-intro">
+      <div class="container">
+        <p class="eyebrow">Portfolio</p>
+        <h1 class="section-title">{piece.data.title}</h1>
+        <p class="section-lead">{piece.data.summary}</p>
+      </div>
+    </section>
+    <section class="section piece-section">
+      <div class="container piece-layout">
+        <div class="piece-images">
+          {uniqueImages.map((image) => (
+            <img src={image} alt={piece.data.title} loading="lazy" />
+          ))}
+        </div>
+        <article class="piece-copy">
+          <Content />
+        </article>
+      </div>
+    </section>
+    <section class="section piece-footer">
+      <div class="container">
+        <a class="btn secondary" href="/portfolio">Back to portfolio</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

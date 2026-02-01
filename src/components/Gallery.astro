@@ -1,74 +1,21 @@
 ---
-const items = [
-  {
-    title: "Driftwood Floor Lamp",
-    src: "/images/floorlamp.png"
-  },
-  {
-    title: "Oval Driftwood Mirror",
-    src: "/images/oval-mirror.jpg"
-  },
-  {
-    title: "Round Driftwood Mirror",
-    src: "/images/round-mirror.png"
-  },
-  {
-    title: "Seashell Mirror",
-    src: "/images/seashell-mirror.png"
-  },
-  {
-    title: "Stacked Driftwood Lamp",
-    src: "/images/stacked-lamp.jpg"
-  },
-  {
-    title: "Driftwood Throne",
-    src: "/images/driftwood-throne.jpg"
-  },
-  {
-    title: "Driftwood Heart",
-    src: "/images/heart.jpg"
-  },
-  {
-    title: "Driftwood Shelf",
-    src: "/images/shelf.jpg"
-  },
-  {
-    title: "Driftwood Bowl",
-    src: "/images/bowl.jpg"
-  },
-  {
-    title: "Bowl in the Making",
-    src: "/images/bowl-making.jpg"
-  },
-  {
-    title: "Driftwood Fish",
-    src: "/images/Driftwood-Fish.png"
-  },
-  {
-    title: "Tealight Holder",
-    src: "/images/tealight.jpg"
-  },
-  {
-    title: "Twin Driftwood Lamps",
-    src: "/images/twolamps.jpg"
-  }
-];
+import { getCollection } from "astro:content";
+
+const pieces = (await getCollection("portfolio")).sort((a, b) => {
+  const orderA = a.data.order ?? 999;
+  const orderB = b.data.order ?? 999;
+  return orderA - orderB;
+});
 ---
 <section class="section" id="work">
   <div class="container">
-    <div class="gallery-grid">
-      {items.map((item) => (
-        <a
-          class="gallery-item"
-          href={item.src}
-          data-lightbox-trigger
-          data-lightbox-src={item.src}
-          data-lightbox-alt={item.title}
-          aria-label={`Open ${item.title} fullscreen`}
-        >
-          <img src={item.src} alt={item.title} loading="lazy" />
+    <div class="portfolio-grid">
+      {pieces.map((piece) => (
+        <a class="portfolio-card" href={`/portfolio/${piece.slug}/`}>
+          <img src={piece.data.cover} alt={piece.data.title} loading="lazy" />
           <div class="info">
-            <h3>{item.title}</h3>
+            <h3>{piece.data.title}</h3>
+            <p>{piece.data.summary}</p>
           </div>
         </a>
       ))}

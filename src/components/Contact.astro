@@ -1,8 +1,10 @@
 ---
+const { compact = false } = Astro.props;
+const sectionClass = `section contact-section${compact ? " compact" : ""}`;
 ---
-<section class="section" id="contact">
+<section class={sectionClass} id="contact">
   <div class="container contact-grid">
-    <div>
+    <div class="contact-copy">
       <h2 class="section-title">Let's make something unique</h2>
       <p class="section-lead">
         Tell us about your space, the size you need, and any inspiration. We'll reply with
