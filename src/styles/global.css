@@ -413,13 +413,13 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 14, 16, 0.14) 0%, rgba(10, 14, 16, 0.22) 55%, rgba(10, 14, 16, 0.3) 100%);
+  background: transparent;
   transition: background 0.2s ease;
 }
 
 .hero-link:hover::after,
 .hero-link:focus-visible::after {
-  background: linear-gradient(180deg, rgba(10, 14, 16, 0.2) 0%, rgba(10, 14, 16, 0.3) 55%, rgba(10, 14, 16, 0.38) 100%);
+  background: transparent;
 }
 
 .hero-overlay {
