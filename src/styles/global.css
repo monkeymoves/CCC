@@ -812,3 +812,192 @@ footer {
     object-position: center 78%;
   }
 }
+
+/* ========================================= */
+/* COOKIEYES OVERRIDES (CCC)                 */
+/* ========================================= */
+
+/* 1) Centered modal + dim backdrop */
+div.cky-consent-container.cky-banner-bottom {
+  bottom: auto !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+
+  width: 90% !important;
+  max-width: 420px !important; /* mobile default */
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+
+  border-radius: 16px !important;
+  z-index: 2147483647 !important;
+
+  box-shadow:
+    0 0 0 9999vmax rgba(0, 0, 0, 0.60),
+    0 25px 50px -12px rgba(0, 0, 0, 0.50) !important;
+}
+
+/* Fallback in case CookieYes changes banner position class */
+div.cky-consent-container.cky-banner-bottom,
+div.cky-consent-container.cky-consent-container {
+  border-radius: 16px !important;
+}
+
+/* 2) Content styling */
+.cky-consent-bar {
+  background-color: #ffffff !important;
+  border: none !important;
+  border-radius: 16px !important;
+  padding: 28px 20px 20px 20px !important;
+  box-shadow: none !important;
+  color: #1f2937 !important;
+  flex-direction: column !important;
+}
+
+/* 3) Logo injection above title */
+p.cky-title::before {
+  content: "" !important;
+  display: block !important;
+  width: 84px !important;
+  height: 84px !important;
+  margin: 0 auto 14px auto !important;
+
+  /* Change this to your CCC logo path */
+  background-image: url("/logoCCC.png") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+p.cky-title {
+  text-align: center !important;
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  color: #111 !important;
+  margin-bottom: 10px !important;
+  display: block !important;
+}
+
+.cky-notice-des {
+  text-align: center !important;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  color: #555 !important;
+  margin-bottom: 18px !important;
+}
+
+/* 4) Buttons */
+.cky-notice-btn-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+
+  /* mobile default: stack */
+  flex-direction: column !important;
+}
+
+/* Common button base */
+button.cky-btn-accept,
+button.cky-btn-reject {
+  width: 100% !important;
+  border-radius: 50px !important;
+  padding: 12px 20px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  margin: 0 !important;
+}
+
+/* Accept button: pick an accent that suits CCC */
+button.cky-btn-accept {
+  background-color: #0b5f66 !important; /* teal-ish */
+  border: 2px solid #0b5f66 !important;
+  color: #ffffff !important;
+  order: 1 !important;
+}
+
+/* Reject button: ghost */
+button.cky-btn-reject {
+  background-color: transparent !important;
+  border: 2px solid #e5e7eb !important;
+  color: #6b7280 !important;
+  order: 2 !important;
+}
+
+button.cky-btn-reject:hover {
+  border-color: #9ca3af !important;
+  background-color: #f9fafb !important;
+  color: #111 !important;
+}
+
+/* Customise: looks like a link */
+button.cky-btn-customize {
+  order: 3 !important;
+  background-color: transparent !important;
+  border: none !important;
+  color: #9ca3af !important;
+  font-size: 0.8rem !important;
+  text-decoration: underline !important;
+  margin-top: 6px !important;
+  width: auto !important;
+  align-self: center !important;
+}
+
+/* Hide "Powered by CookieYes" */
+[data-cky-tag="powered-by"] {
+  display: none !important;
+}
+
+/* ========================================= */
+/* DESKTOP TWEAKS                            */
+/* ========================================= */
+@media (min-width: 768px) {
+  div.cky-consent-container.cky-banner-bottom {
+    max-width: 560px !important;
+  }
+
+  .cky-notice-content-wrapper,
+  .cky-notice,
+  .cky-notice-group {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .cky-notice-des {
+    padding: 0 10px !important;
+    max-width: 90% !important;
+  }
+
+  .cky-notice-btn-wrapper {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+    padding: 0 20px !important;
+  }
+
+  button.cky-btn-reject {
+    order: 1 !important;
+    flex: 1 !important;
+    width: auto !important;
+  }
+
+  button.cky-btn-accept {
+    order: 2 !important;
+    flex: 1 !important;
+    width: auto !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 4px 15px rgba(11, 95, 102, 0.35) !important;
+  }
+
+  button.cky-btn-customize {
+    order: 3 !important;
+    flex-basis: 100% !important;
+    width: 100% !important;
+    margin-top: 14px !important;
+  }
+}
