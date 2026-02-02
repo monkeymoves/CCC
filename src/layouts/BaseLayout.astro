@@ -4,25 +4,79 @@ import "../styles/global.css";
 const {
   title = "Celtic Coast Creations | Driftwood Design",
   description = "Custom driftwood lamps, mirrors, and sculptural pieces handcrafted in South Wales.",
-  ogImage = "/images/hero-banner.jpg"
+  ogImage = "/images/hero-banner.jpg",
+  canonical,
+  type = "website",
 } = Astro.props;
+
+// Set this once, reuse it everywhere
+const GTM_ID = "GTM-TJ5768"; // replace later
+
+// Ensure astro.config.mjs includes: site: "https://celticcoastcreations.co.uk"
+const site = Astro.site;
+if (!site) throw new Error("Astro.site is not set. Add `site` to astro.config.mjs.");
+
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site).toString();
+
+// Make OG image absolute (required for reliable sharing)
+const socialImage = new URL(ogImage, site).toString();
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f7f6f2" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="icon" type="image/png" href="/logoCCC.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Celtic Coast Creations" />
+    <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:type" content="website" />
-    <title>{title}</title>
-    <link rel="icon" type="image/png" href="/logoCCC.png" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','${GTM_ID}');`}
+    </script>
+    <!-- End Google Tag Manager -->
+
     <slot name="head" />
   </head>
+
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <slot />
   </body>
 </html>
